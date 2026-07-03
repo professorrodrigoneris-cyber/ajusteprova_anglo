@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajustador Anglo | Modern Excel Tools</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- ExcelJS & FileSaver (via CDN) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <main class="glass-container">
+        <header>
+            <h1>Ajustador <span>Anglo</span></h1>
+            <p>Formatação e correção inteligente de planilhas de notas.</p>
+        </header>
+
+        <section class="upload-section">
+            <div class="drop-zone" id="drop-zone">
+                <div class="drop-zone-content">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <p>Arraste arquivos Excel (.xlsx) ou <strong>clique para selecionar</strong></p>
+                    <input type="file" id="file-input" accept=".xlsx" multiple hidden>
+                </div>
+            </div>
+            <div id="file-list" class="file-list"></div>
+        </section>
+
+        <section class="options-section">
+            <div class="option-card">
+                <label class="toggle-switch">
+                    <input type="checkbox" id="chk-notas" checked>
+                    <span class="slider"></span>
+                </label>
+                <div class="option-content">
+                    <h3>1. Ajustar Notas</h3>
+                    <p>Substitui notas baixas por valores aleatórios na faixa aceitável.</p>
+                    
+                    <div class="range-inputs" id="notas-config">
+                        <div class="input-group">
+                            <label>Notas de 0 até:</label>
+                            <input type="number" id="nota-max-alvo" value="59">
+                        </div>
+                        <span class="arrow">→</span>
+                        <div class="input-group">
+                            <label>Mínimo (Novo):</label>
+                            <input type="number" id="nota-min-nova" value="60">
+                        </div>
+                        <div class="input-group">
+                            <label>Máximo (Novo):</label>
+                            <input type="number" id="nota-max-nova" value="72">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="option-card">
+                <label class="toggle-switch">
+                    <input type="checkbox" id="chk-estilos" checked>
+                    <span class="slider"></span>
+                </label>
+                <div class="option-content">
+                    <h3>2. Ajustar Estilo</h3>
+                    <p>Insere título da turma, centraliza, adiciona bordas pontilhadas e fundo na linha das matérias.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="actions">
+            <button id="btn-processar" class="btn-primary" disabled>Processar Planilhas</button>
+        </div>
+        
+        <div id="progress-container" class="progress-container hidden">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <p id="progress-text">Processando...</p>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

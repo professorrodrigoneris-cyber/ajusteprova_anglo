@@ -1,0 +1,338 @@
+:root {
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --bg-dark: #0f172a;
+    --glass-bg: rgba(30, 41, 59, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --success: #10b981;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background Animated Blobs */
+.background-blobs {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.5;
+    animation: float 10s infinite ease-in-out alternate;
+}
+
+.blob-1 {
+    width: 400px;
+    height: 400px;
+    background: #6366f1;
+    top: -100px;
+    left: -100px;
+}
+
+.blob-2 {
+    width: 500px;
+    height: 500px;
+    background: #ec4899;
+    bottom: -150px;
+    right: -100px;
+    animation-delay: -5s;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(50px, 50px) scale(1.1); }
+}
+
+/* Glassmorphism Container */
+.glass-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 2.5rem;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+header h1 span {
+    color: var(--primary);
+}
+
+header p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+/* Drag and Drop Zone */
+.drop-zone {
+    border: 2px dashed var(--glass-border);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.drop-zone:hover, .drop-zone.dragover {
+    border-color: var(--primary);
+    background: rgba(99, 102, 241, 0.1);
+}
+
+.drop-zone-content {
+    pointer-events: none;
+}
+
+.drop-zone svg {
+    margin-bottom: 1rem;
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+}
+
+.drop-zone:hover svg {
+    color: var(--primary);
+}
+
+.file-list {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.file-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Options */
+.options-section {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.option-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1.5rem;
+    transition: transform 0.2s ease, background 0.3s;
+}
+
+.option-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.option-content h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.option-content p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+/* Range Inputs */
+.range-inputs {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    transition: opacity 0.3s ease;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.input-group label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.input-group input {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--glass-border);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 8px;
+    width: 80px;
+    text-align: center;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    border-color: var(--primary);
+}
+
+.arrow {
+    color: var(--text-muted);
+    font-weight: bold;
+    margin-top: 1.2rem;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+    flex-shrink: 0;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--primary);
+}
+
+input:checked + .slider:before {
+    transform: translateX(22px);
+}
+
+/* Disabled state */
+.option-card.disabled .option-content {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Buttons & Actions */
+.actions {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.39);
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+}
+
+.btn-primary:disabled {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-muted);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Progress */
+.progress-container {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.progress-container.hidden {
+    display: none;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--success);
+    transition: width 0.3s ease;
+}
+
+#progress-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
